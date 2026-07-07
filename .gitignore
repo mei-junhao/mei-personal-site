@@ -1,0 +1,10 @@
+# 临时/冗余文件
+resume_copy.doc
+resume_out.html
+resume_out.files/
+tmp_resume.doc
+article.html
+article_enhanced.md
+__pycache__/
+*.pyc
+.workbuddy/
