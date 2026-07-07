@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>梅俊豪 · 心理咨询</title>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script async defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f7f5f0;
+    color: #2c2c2c;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  a { color: #3d5a6e; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== Hero ===== */
+  .hero {
+    background: linear-gradient(135deg, #2c3e4e 0%, #3d5a6e 50%, #2c3e4e 100%);
+    color: #f0ede6;
+    padding: 60px 24px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(255,255,255,0.03) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-photo {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(240,237,230,0.3);
+    margin-bottom: 16px;
+    display: inline-block;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  .hero .subtitle {
+    font-size: 1rem;
+    color: rgba(240,237,230,0.75);
+    font-weight: 300;
+    letter-spacing: 4px;
+    margin-top: 6px;
+  }
+  .hero .stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 20px;
+  }
+  .hero .stat-item { text-align: center; }
+  .hero .stat-num {
+    font-size: 1.3rem;
+    font-weight: 600;
+    display: block;
+    font-family: 'Noto Serif SC', serif;
+  }
+  .hero .stat-label {
+    font-size: 0.78rem;
+    color: rgba(240,237,230,0.65);
+    font-weight: 300;
+  }
+  .hero .divider {
+    width: 40px; height: 2px;
+    background: rgba(240,237,230,0.3);
+    margin: 18px auto;
+  }
+
+  /* ===== Sections ===== */
+  section { padding: 40px 0; }
+  section:nth-child(even) { background: #fff; }
+  section h2 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.2rem;
+    color: #2c3e4e;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  section h2 .sep {
+    flex: 1; height: 1px;
+    background: #e0dbd0;
+    margin-left: 8px;
+  }
+
+  /* ===== Intro ===== */
+  .intro-text { font-size: 0.95rem; color: #4a4a4a; }
+  .intro-text p { margin-bottom: 14px; }
+
+  .style-card {
+    background: #f5f3ee;
+    border-radius: 14px;
+    padding: 24px;
+    margin: 20px 0;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .style-card .icon-wrap {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: #2c3e4e;
+    color: #f0ede6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .style-card .content { flex: 1; }
+  .style-card .content p { font-size: 0.92rem; color: #4a4a4a; }
+
+  .quote-block {
+    border-left: 3px solid #2c3e4e;
+    padding: 16px 20px;
+    margin: 20px 0;
+    background: #fcfaf7;
+    border-radius: 0 10px 10px 0;
+    font-size: 0.92rem;
+    color: #555;
+    font-style: italic;
+    position: relative;
+  }
+  .quote-block::before {
+    content: '"';
+    position: absolute;
+    top: -4px; left: 8px;
+    font-size: 2.2rem;
+    color: #d4a853;
+    font-family: serif;
+    line-height: 1;
+  }
+
+  /* ===== Expertise ===== */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .expertise-cat {
+    background: #faf9f6;
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid #ede8e0;
+  }
+  .expertise-cat h4 {
+    font-size: 0.9rem;
+    color: #2c3e4e;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 0.78rem;
+    padding: 4px 10px;
+    background: #ede8e0;
+    border-radius: 20px;
+    color: #555;
+  }
+  .tag.highlight { background: #2c3e4e; color: #f0ede6; }
+
+  /* ===== Training ===== */
+  .training-card {
+    background: #faf9f6;
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid #ede8e0;
+    margin-bottom: 14px;
+  }
+  .training-card h4 {
+    font-size: 0.92rem;
+    color: #2c3e4e;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .training-card .meta {
+    font-size: 0.82rem;
+    color: #888;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+  .training-card p {
+    font-size: 0.88rem;
+    color: #555;
+  }
+
+  .training-sub {
+    font-size: 0.88rem;
+    color: #2c3e4e;
+    font-weight: 500;
+    margin: 16px 0 10px;
+    padding-top: 4px;
+  }
+
+  /* ===== Info Badges ===== */
+  .info-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .info-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: #555;
+    background: #f5f3ee;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+
+  /* ===== Dialog (unchanged logic) ===== */
+  .dialog-section { padding: 40px 0 80px; }
+  .dialog-section h2 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.2rem;
+    color: #2c3e4e;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dialog-box {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border: 1px solid #ede8e0;
+  }
+  .dialog-messages {
+    padding: 28px 24px 16px;
+    min-height: 120px;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  .msg {
+    display: flex; gap: 12px; margin-bottom: 20px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .msg.visible { opacity: 1; transform: translateY(0); }
+  .msg-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .msg.system .msg-avatar { background: #e8e4dc; color: #5a5a5a; }
+  .msg.user .msg-avatar { background: #2c3e4e; color: #f0ede6; }
+  .msg-bubble {
+    background: #f5f3ee; padding: 12px 18px;
+    border-radius: 4px 16px 16px 16px;
+    font-size: 0.92rem; line-height: 1.7;
+    max-width: 85%; color: #2c2c2c; word-break: break-word;
+  }
+  .msg.user .msg-bubble {
+    background: #2c3e4e; color: #f0ede6;
+    border-radius: 16px 4px 16px 16px;
+  }
+  .msg.user { flex-direction: row-reverse; }
+  .msg.user .msg-bubble { text-align: right; }
+  .msg-highlight {
+    background: #fef9e7; border-left: 3px solid #d4a853;
+    padding: 12px 18px; font-size: 0.92rem; line-height: 1.7;
+    margin-bottom: 12px; border-radius: 0 8px 8px 0; word-break: break-word;
+  }
+
+  .dialog-options { padding: 8px 24px 24px; display: flex; flex-direction: column; gap: 10px; }
+  .option-btn {
+    display: block; width: 100%;
+    padding: 14px 20px; background: #f7f5f0;
+    border: 1px solid #e0dbd0; border-radius: 12px;
+    font-family: inherit; font-size: 0.92rem;
+    color: #2c2c2c; cursor: pointer;
+    transition: all 0.2s ease; text-align: left;
+  }
+  .option-btn:hover { background: #ece8de; border-color: #c5bca8; transform: translateY(-1px); }
+  .option-btn:disabled { display: none; }
+
+  .free-input-area { padding: 0 24px 16px; display: flex; gap: 10px; }
+  .free-input-area input {
+    flex: 1; padding: 12px 16px; border: 1px solid #e0dbd0;
+    border-radius: 10px; font-family: inherit; font-size: 0.92rem;
+    outline: none; transition: border-color 0.2s;
+  }
+  .free-input-area input:focus { border-color: #2c3e4e; }
+  .free-input-area button {
+    padding: 12px 24px; background: #2c3e4e; color: #f0ede6;
+    border: none; border-radius: 10px; font-family: inherit;
+    font-size: 0.92rem; cursor: pointer; transition: background 0.2s; white-space: nowrap;
+  }
+  .free-input-area button:hover { background: #3d5a6e; }
+  .free-input-area button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .end-chat-area {
+    padding: 0 24px 16px;
+    display: flex;
+    justify-content: center;
+  }
+  .end-chat-area button {
+    padding: 8px 18px;
+    background: transparent;
+    color: #999;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .end-chat-area button:hover {
+    background: #f5f3ee;
+    color: #666;
+    border-color: #ccc;
+  }
+
+  .typing-indicator { display: flex; gap: 12px; margin-bottom: 20px; opacity: 0; transition: opacity 0.3s; }
+  .typing-indicator.visible { opacity: 1; }
+  .typing-indicator .msg-avatar {
+    width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+    background: #e8e4dc; color: #5a5a5a;
+  }
+  .typing-dots {
+    background: #f5f3ee; padding: 14px 20px;
+    border-radius: 4px 16px 16px 16px; display: flex; gap: 4px;
+  }
+  .typing-dots span {
+    width: 7px; height: 7px; border-radius: 50%; background: #aaa;
+    display: inline-block; animation: blink 1.4s infinite both;
+  }
+  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink { 0%,80%,100%{opacity:.3} 40%{opacity:1} }
+
+  .dialog-footer {
+    padding: 12px 24px; border-top: 1px solid #f0ede6;
+    font-size: 0.8rem; color: #aaa; text-align: center;
+    display: flex; justify-content: center; align-items: center; gap: 16px;
+  }
+  .restart-link {
+    color: #bbb; cursor: pointer;
+    text-decoration: underline; text-underline-offset: 3px;
+    text-decoration-color: #ddd; transition: color 0.2s;
+  }
+  .restart-link:hover { color: #2c3e4e; text-decoration-color: #2c3e4e; }
+  .summary-box {
+    background: #f0f4f0; border: 1px solid #c8dcc8;
+    border-radius: 12px; padding: 20px; margin-top: 12px;
+    font-size: 0.88rem; line-height: 1.7;
+  }
+  .summary-box h4 { color: #2c5a2c; margin-bottom: 8px; font-size: 0.95rem; }
+  .summary-box .copy-btn {
+    margin-top: 12px; padding: 8px 16px; background: #2c5a2c;
+    color: #fff; border: none; border-radius: 8px;
+    cursor: pointer; font-family: inherit; font-size: 0.85rem;
+  }
+  .summary-box .copy-btn:hover { background: #3d7a3d; }
+
+  .page-footer {
+    text-align: center; padding: 32px 24px;
+    font-size: 0.8rem; color: #aaa;
+    border-top: 1px solid #e8e4dc;
+  }
+
+  @media (max-width: 500px) {
+    .hero { padding: 40px 20px 36px; }
+    .hero h1 { font-size: 1.6rem; }
+    .hero .stats { gap: 20px; }
+    .hero .stat-num { font-size: 1.1rem; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    .style-card { flex-direction: column; }
+    .dialog-messages { padding: 20px 16px 12px; max-height: 400px; }
+    .dialog-options { padding: 8px 16px 20px; }
+    .free-input-area { padding: 0 16px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="hero-content">
+    <img src="photo.png" alt="梅俊豪" class="hero-photo" width="120" height="120" loading="lazy">
+    <h1>梅俊豪</h1>
+    <p class="subtitle">心理咨询师 · 温尼科特取向</p>
+    <div class="divider"></div>
+    <div class="stats">
+      <div class="stat-item"><span class="stat-num">10</span><span class="stat-label">从业年限</span></div>
+      <div class="stat-item"><span class="stat-num">3000+</span><span class="stat-label">个案时长</span></div>
+      <div class="stat-item"><span class="stat-num">600</span><span class="stat-label">个体咨询 ¥/50min</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 个人介绍 ===== -->
+<section>
+  <div class="container">
+    <h2>关于我 <span class="sep"></span></h2>
+    <div class="intro-text">
+      <p>我从 2016 年开始全职进入心理咨询行业，接受完备的精神分析取向训练，2018 年开始正式执业，专注于精神分析及温尼科特取向心理咨询的理论与实践。</p>
+      <p>在我的工作中，我发现大多数来访的核心问题是无法存在、无法持续存在，以及在生命早期精神自体构建过程中遇到的困难——表现为自我力量不足、缺乏真实感、过度依赖、无力感，以及在人际和亲密关系中的巨大困难。</p>
+      <p>想要真正帮助这些正在遭受精神痛苦的人，唯一的办法是促进他们人格的成熟。心理咨询，就是行之有效的帮助一个人人格成熟的方式。</p>
+    </div>
+
+    <div class="style-card">
+      <div class="icon-wrap">✨</div>
+      <div class="content">
+        <p><strong>咨询风格</strong></p>
+        <p style="margin-top:4px;">温柔的抱持，坚定的等待，必要的管理。咨询不是任何一方的独角戏，是两个人灵魂深处的共舞。我所做的，是为来访者提供一个促进性的环境，去重新启动停滞的成熟和发展进程，帮助来访活出自己，活出价值和意义。</p>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      人生是一段旅途，我愿意陪你走过黎明前的黑暗；愿意陪你探索深林中的秘密；愿意与你一同欣赏成长之路上的美好风光。
+    </div>
+
+    <div class="info-bar">
+      <span class="info-badge">📍 郑州</span>
+      <span class="info-badge">💬 中文</span>
+      <span class="info-badge">📚 心理动力学 · 温尼科特取向</span>
+      <span class="info-badge">📖 公众号 MindMeetsHeart</span>
+      <span class="info-badge">🏅 国家三级咨询师</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Dialog ===== -->
+<section class="dialog-section" style="background:#fff;">
+  <div class="container">
+    <h2>联系我 <span class="sep"></span></h2>
+    <div class="dialog-box">
+      <div class="dialog-messages" id="messageArea"></div>
+      <div class="dialog-options" id="optionsArea"></div>
+      <div class="free-input-area" id="freeInputArea" style="display:none;">
+        <input type="text" id="freeInput" placeholder="输入你想说的话..." maxlength="500">
+        <button id="freeSendBtn">发送</button>
+      </div>
+      <div class="end-chat-area" id="endChatArea" style="display:none;">
+        <button id="endChatBtn">结束对话，发送摘要</button>
+      </div>
+      <div class="dialog-footer" id="dialogFooter">
+        <span>点击选项，我来回应你</span>
+        <span class="restart-link" onclick="restartDialog()">重新开始</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 擅长领域 ===== -->
+<section style="background:#fff;">
+  <div class="container">
+    <h2>擅长领域 <span class="sep"></span></h2>
+    <div class="expertise-grid">
+      <div class="expertise-cat">
+        <h4>👶 亲子教育</h4>
+        <div class="tag-cloud">
+          <span class="tag">亲子沟通</span><span class="tag">亲子冲突</span>
+          <span class="tag">厌学</span><span class="tag">网瘾</span>
+          <span class="tag">强势父母</span><span class="tag">注意力不集中</span>
+          <span class="tag">青少年抑郁</span><span class="tag">关系紧张</span>
+          <span class="tag">过度控制</span><span class="tag">青春期性教育</span>
+        </div>
+      </div>
+      <div class="expertise-cat">
+        <h4>🤝 人际关系</h4>
+        <div class="tag-cloud">
+          <span class="tag">沟通不畅</span><span class="tag">讨好型人格</span>
+          <span class="tag">社交困难</span><span class="tag">人际压力</span>
+          <span class="tag">人际关系冲突</span><span class="tag">个人界限</span>
+          <span class="tag">害怕被拒绝</span><span class="tag">不会拒绝</span>
+          <span class="tag">过度羞涩</span><span class="tag">边界议题</span>
+        </div>
+      </div>
+      <div class="expertise-cat">
+        <h4>🌱 个人成长</h4>
+        <div class="tag-cloud">
+          <span class="tag">自我认同</span><span class="tag">自尊自信</span>
+          <span class="tag">自我否定</span><span class="tag">自我封闭</span>
+          <span class="tag">童年创伤</span><span class="tag">成长创伤</span>
+          <span class="tag">性格议题</span><span class="tag">理想主义</span>
+          <span class="tag">自我探索</span><span class="tag">自我管理</span>
+        </div>
+      </div>
+      <div class="expertise-cat">
+        <h4>💭 情绪压力</h4>
+        <div class="tag-cloud">
+          <span class="tag">焦虑</span><span class="tag">无意义感</span>
+          <span class="tag">迷茫</span><span class="tag">孤独</span>
+          <span class="tag">敏感</span><span class="tag">存在感缺失</span>
+          <span class="tag">情绪不稳定</span><span class="tag">无助</span>
+          <span class="tag">虚无感</span><span class="tag">空虚感</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 培训经历 ===== -->
+<section>
+  <div class="container">
+    <h2>培训经历 <span class="sep"></span></h2>
+
+    <h4 style="font-size:0.92rem;color:#2c3e4e;font-weight:600;margin-bottom:12px;">📌 长程培训</h4>
+    <div class="training-card">
+      <h4>北京回龙观医院轮转实习</h4>
+      <div class="meta"><span>2015.08 — 2016.01</span><span>精神科 · 心理科 · 心理治疗室 · 测查科</span></div>
+    </div>
+    <div class="training-card">
+      <h4>第三届曼陀海斯精神分析连续培训（北京）</h4>
+      <div class="meta"><span>2017.04 — 2019.01</span><span>360 学时</span><span>初级组 · 中级组 · 高级组</span></div>
+      <p>精神分析取向心理成长和咨询技能地面培训</p>
+    </div>
+    <div class="training-card">
+      <h4>中-巴温尼科特精神分析连续培训（北京回龙观医院）</h4>
+      <div class="meta"><span>2017 — 2019</span><span>160 学时</span><span>第一期至第四期 基础组</span></div>
+      <p>温尼科特精神分析取向心理咨询师地面培训</p>
+    </div>
+    <div class="training-card">
+      <h4>北京温尼科特学习与研究小组 文献研讨会</h4>
+      <div class="meta"><span>2016 年起</span><span>共计 40 期</span><span>地面研讨</span></div>
+    </div>
+    <div class="training-card">
+      <h4>曼陀海斯精神分析取向心理咨询师连续培训</h4>
+      <div class="meta"><span>2017 — 2019</span><span>160 学时</span><span>初级班 · 中级班 · 高级班</span></div>
+    </div>
+    <div class="training-card">
+      <h4>中-巴温尼科特精神分析连续培训 · 提高组</h4>
+      <div class="meta"><span>2019.11</span><span>80 学时</span><span>北京回龙观医院</span></div>
+    </div>
+
+    <h4 class="training-sub">📌 短程培训</h4>
+    <div class="training-card">
+      <h4>简单心理 · 世界精神分析大师课 温尼科特篇</h4>
+      <div class="meta"><span>2019 / 2021</span><span>两期共 42 学时</span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="page-footer">
+  © 2026 梅俊豪 · All Rights Reserved<br>
+  <span style="font-size:0.75rem;color:#bbb;margin-top:8px;display:inline-block;">
+    <span id="busuanzi_container_site_pv" style="display:inline;">访问量 <span id="busuanzi_value_site_pv"></span></span>
+  </span>
+</footer>
+
+<script>
+const EMAIL = '985729106@qq.com';
+// ⚠️ 公开仓库：替换为你的实际值（从本地 index.html 复制）
+const DEEPSEEK_KEY = 'sk-your-deepseek-api-key';
+const DEEPSEEK_URL = 'https://api.deepseek.com/chat/completions';
+const DEEPSEEK_MODEL = 'deepseek-v4-flash';
+const MAX_EXCHANGES = 50;
+
+// EmailJS config — 替换为你的实际值
+const EMAILJS_PUBLIC_KEY = 'your-emailjs-public-key';
+const EMAILJS_SERVICE_ID = 'your-service-id';
+const EMAILJS_TEMPLATE_ID = 'your-template-id';
+
+// EmailJS init
+if (EMAILJS_PUBLIC_KEY && typeof emailjs !== 'undefined') {
+  try { emailjs.init(EMAILJS_PUBLIC_KEY); } catch(e) {}
+}
+
+const messageArea = document.getElementById('messageArea');
+const optionsArea = document.getElementById('optionsArea');
+const freeInputArea = document.getElementById('freeInputArea');
+const freeInput = document.getElementById('freeInput');
+const freeSendBtn = document.getElementById('freeSendBtn');
+const endChatBtn = document.getElementById('endChatBtn');
+const endChatArea = document.getElementById('endChatArea');
+const footer = document.getElementById('dialogFooter');
+
+let conversationHistory = [];
+let exchangeCount = 0;
+let isFreeMode = false;
+let isCollectingContact = false;
+let currentContext = '';
+let summaryText = '';
+let hasContact = false;
+
+function scrollToBottom() {
+  const box = document.querySelector('.dialog-box');
+  setTimeout(() => box.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 150);
+}
+
+function addMessage(type, content, extraClass = '') {
+  const div = document.createElement('div');
+  div.className = `msg ${type} ${extraClass}`;
+  div.innerHTML = `<div class="msg-avatar">${type === 'system' ? '🤖' : '👤'}</div><div class="msg-bubble">${content}</div>`;
+  messageArea.appendChild(div);
+  requestAnimationFrame(() => div.classList.add('visible'));
+  scrollToBottom();
+}
+
+function addHighlight(content) {
+  const div = document.createElement('div');
+  div.className = 'msg';
+  div.innerHTML = `<div class="msg-highlight">${content}</div>`;
+  messageArea.appendChild(div);
+  requestAnimationFrame(() => div.classList.add('visible'));
+  scrollToBottom();
+}
+
+function showTyping() {
+  if (document.getElementById('typingIndicator')) return;
+  const div = document.createElement('div');
+  div.className = 'typing-indicator'; div.id = 'typingIndicator';
+  div.innerHTML = `<div class="msg-avatar">🤖</div><div class="typing-dots"><span></span><span></span><span></span></div>`;
+  messageArea.appendChild(div);
+  requestAnimationFrame(() => div.classList.add('visible'));
+  scrollToBottom();
+}
+
+function hideTyping() { const el = document.getElementById('typingIndicator'); if (el) el.remove(); }
+
+function showEmailMessage() {
+  addMessage('system', '请发邮件给我吧：');
+  addHighlight(`📧 ${EMAIL}`);
+  addMessage('system', '我会在 48 小时内回复。');
+}
+
+// 发邮件前询问联系方式 + 告知摘要机制
+function askContactThenEmail(contextMsg, contextLabel) {
+  if (contextMsg) addMessage('system', contextMsg);
+  setTimeout(() => {
+    addMessage('system', '在结束前，方便告诉我你的联系方式吗？我会把这次对话整理成摘要发送给梅老师，方便之后联系你。你可以提供邮箱或微信，不方便也没关系。');
+    setOptions([
+      { id: 'provide', label: '好的，我留个联系方式' },
+      { id: 'skip', label: '不方便，直接发邮件' }
+    ], (choice) => {
+      if (choice === 'provide') {
+        addMessage('system', '请留下你的邮箱或微信号：');
+        currentContext = contextLabel || currentContext;
+        isCollectingContact = true;
+        showFreeInput('输入你的联系方式...');
+      } else {
+        addMessage('system', '好的，没问题。');
+        setTimeout(() => {
+          showEmailMessage();
+          currentContext = contextLabel || currentContext;
+          setTimeout(() => enterFreeChat('顺便如果有什么想聊的，也可以再说两句。'), 600);
+        }, 400);
+      }
+    });
+  }, 400);
+}
+
+function setOptions(options, handler) {
+  optionsArea.innerHTML = '';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.textContent = opt.label;
+    btn.addEventListener('click', () => {
+      optionsArea.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+      addMessage('user', opt.label);
+      conversationHistory.push({ role: 'choice', content: opt.label });
+      setTimeout(() => handler(opt.id), 400);
+    });
+    optionsArea.appendChild(btn);
+  });
+}
+
+function clearOptions() { optionsArea.innerHTML = ''; }
+
+function showFreeInput(placeholder) {
+  freeInputArea.style.display = 'flex';
+  endChatArea.style.display = 'flex';
+  freeInput.placeholder = placeholder || '输入你想说的话...';
+  freeInput.value = '';
+  freeInput.focus();
+}
+
+function hideFreeInput() {
+  freeInputArea.style.display = 'none';
+  endChatArea.style.display = 'none';
+}
+function setFooter(text) {
+  const span = footer.querySelector('span');
+  if (span) span.textContent = text;
+}
+
+freeSendBtn.addEventListener('click', () => {
+  const text = freeInput.value.trim();
+  if (!text) return;
+  freeInput.value = '';
+  handleFreeText(text);
+});
+freeInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); freeSendBtn.click(); }
+});
+
+// 结束对话按钮
+endChatBtn.addEventListener('click', () => {
+  hideFreeInput();
+  clearOptions();
+  addMessage('system', '你选择了结束对话。');
+  const summary = generateSummary();
+  endConversation(summary);
+});
+
+// 重新开始对话
+function restartDialog() {
+  messageArea.innerHTML = '';
+  optionsArea.innerHTML = '';
+  hideFreeInput();
+  conversationHistory = [];
+  exchangeCount = 0;
+  isFreeMode = false;
+  isCollectingContact = false;
+  hasContact = false;
+  currentContext = '';
+  summaryText = '';
+  setFooter('点击选项，我来回应你');
+  startDialog();
+}
+
+function endConversation(summary) {
+  summaryText = summary;
+  hideFreeInput(); clearOptions();
+  const hasDialogue = conversationHistory.some(m => m.role === 'user');
+  const shouldSendEmail = hasContact || hasDialogue;
+
+  if (shouldSendEmail) {
+    setFooter('本次对话已达限额，页面可继续浏览，无需关闭。');
+    addMessage('system', '本次对话到此结束。以下是你本次对话的摘要：');
+    const div = document.createElement('div');
+    div.className = 'msg visible';
+    div.innerHTML = `<div class="summary-box"><h4>📋 对话摘要</h4><div style="white-space:pre-wrap;">${summary}</div><button class="copy-btn" onclick="copySummary()">复制摘要</button> <button class="copy-btn" onclick="sendSummaryEmail()" style="background:#2c3e4e;" id="emailBtn">发送到咨询师邮箱</button></div>`;
+    messageArea.appendChild(div);
+    scrollToBottom();
+    if (EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID) {
+      sendSummaryEmail();
+    }
+  } else {
+    setFooter('感谢你的浏览，如有需要请发邮件联系。');
+    addMessage('system', '感谢你的浏览。没有留下联系方式和对话内容，本次不生成摘要。如果有需要，可以发邮件到 <strong>' + EMAIL + '</strong> 联系梅老师。');
+  }
+}
+
+async function callDeepSeek(messages) {
+  showTyping();
+  try {
+    const res = await fetch(DEEPSEEK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${DEEPSEEK_KEY}` },
+      body: JSON.stringify({ model: DEEPSEEK_MODEL, messages, max_tokens: 500, temperature: 0.7, thinking: { type: 'disabled' }, stream: false })
+    });
+    hideTyping();
+    if (!res.ok) return { error: `API 响应异常 (${res.status})` };
+    const data = await res.json();
+    return { text: data.choices?.[0]?.message?.content || '' };
+  } catch (e) {
+    hideTyping();
+    return { error: '网络连接失败，请稍后重试' };
+  }
+}
+
+function buildSystemPrompt(context) {
+  return `你是心理咨询师梅俊豪的个人页面AI助手。
+
+梅俊豪的信息：
+- 从业10年，个案时长3000+小时
+- 国家三级心理咨询师
+- 温尼科特取向，心理动力学
+- 所在地：郑州，只工作中文
+- 个体咨询收费：600元/50分钟
+- 咨询风格：温柔的抱持，坚定的等待，必要的管理
+- 擅长领域：亲子教育、人际关系、个人成长、情绪压力
+- 公众号：MindMeetsHeart
+
+你的回复原则：
+1. 简洁——每次回复不超过150字
+2. 不承诺任何事——不承诺效果、不保证结果
+3. 以引导对方提供信息为主——多提问
+4. 最后都要强调：最好的方式是发邮件到 ${EMAIL} 详细沟通` + (context ? `\n\n当前背景：${context}` : '');
+}
+
+async function handleFreeText(text) {
+  // 如果正在收集联系方式，优先处理
+  if (isCollectingContact) {
+    isCollectingContact = false;
+    hasContact = true;
+    addMessage('user', escapeHtml(text));
+    conversationHistory.push({ role: 'user', content: '联系方式：' + text });
+    hideFreeInput();
+    addMessage('system', '好的，已经记下了。我会把这次对话的摘要整理后发给梅老师。');
+    setTimeout(() => {
+      showEmailMessage();
+      setTimeout(() => enterFreeChat('顺便如果还有什么想聊的，也可以再说两句。'), 600);
+    }, 400);
+    return;
+  }
+  if (exchangeCount >= MAX_EXCHANGES) {
+    addMessage('system', `本次对话已达到 ${MAX_EXCHANGES} 句限额。`);
+    endConversation(generateSummary());
+    return;
+  }
+  addMessage('user', escapeHtml(text));
+  conversationHistory.push({ role: 'user', content: text });
+  exchangeCount++;
+  const remaining = MAX_EXCHANGES - exchangeCount;
+  const result = await callDeepSeek([
+    { role: 'system', content: buildSystemPrompt(currentContext) },
+    ...conversationHistory.filter(m => m.role !== 'choice').slice(-20)
+  ]);
+  if (result.error) { addMessage('system', `抱歉，${result.error}。`); showFreeInput(); return; }
+  let reply = result.text;
+  if (remaining <= 5 && !reply.includes(EMAIL)) reply += `\n\n（建议发邮件到 ${EMAIL} 详细沟通。）`;
+  if (remaining <= 0) reply += `\n\n本次对话已达限额。如有需要请发邮件到 ${EMAIL}，我会尽快回复。`;
+  addMessage('system', reply);
+  conversationHistory.push({ role: 'assistant', content: reply });
+  if (remaining <= 0) endConversation(generateSummary());
+  else showFreeInput(`剩余 ${remaining} 句，继续输入...`);
+}
+
+function escapeHtml(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+
+function generateSummary() {
+  const choices = conversationHistory.filter(m => m.role === 'choice');
+  const userMsgs = conversationHistory.filter(m => m.role === 'user');
+  const aiMsgs = conversationHistory.filter(m => m.role === 'assistant');
+
+  const lines = ['# 对话摘要', '', '## 基本信息'];
+  lines.push(`- 对话时间：${new Date().toLocaleString('zh-CN')}`);
+  lines.push(`- 对话来源：个人主页`);
+  lines.push(`- 用户发言：${userMsgs.length} 次`);
+  lines.push(`- AI 回复：${aiMsgs.length} 次`);
+
+  if (choices.length) {
+    lines.push('', '## 用户路径');
+    choices.forEach(m => lines.push(`→ ${m.content}`));
+  }
+
+  if (userMsgs.length) {
+    lines.push('', '## 用户输入');
+    userMsgs.forEach(m => lines.push(`- ${m.content.substring(0, 150)}`));
+  }
+
+  if (hasContact) {
+    lines.push('', '## 联系方式');
+    const contactMsg = conversationHistory.find(m => m.role === 'user' && m.content.startsWith('联系方式：'));
+    if (contactMsg) lines.push(`- ${contactMsg.content.replace('联系方式：', '')}`);
+  }
+
+  lines.push('', '---');
+  lines.push(`建议跟进：回复邮件至 ${EMAIL}`);
+  return lines.join('\n');
+}
+
+function copySummary() {
+  if (!summaryText) return;
+  navigator.clipboard.writeText(summaryText).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    if (btn) { btn.textContent = '已复制 ✓'; setTimeout(() => { btn.textContent = '复制摘要'; }, 2000); }
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = summaryText; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy'); ta.remove();
+  });
+}
+
+async function sendSummaryEmail() {
+  const btn = document.getElementById('emailBtn');
+  if (btn) btn.textContent = '发送中...';
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      to_email: EMAIL,
+      subject: `对话摘要 - ${new Date().toLocaleDateString('zh-CN')}`,
+      message: summaryText,
+      user_messages: conversationHistory.filter(m => m.role === 'user').length.toString(),
+      exchange_count: exchangeCount.toString()
+    });
+    if (btn) btn.textContent = '已发送 ✓';
+  } catch (e) {
+    console.error('Email send failed:', e);
+    if (btn) btn.textContent = '发送失败，可手动复制';
+  }
+}
+
+// ===== Dialog Flow =====
+function enterFreeChat(hint) {
+  isFreeMode = true;
+  currentContext = currentContext || '来访者进入自由交流';
+  addMessage('system', hint || '如果有什么想聊的，可以跟我说几句。');
+  addMessage('system', `（本次对话有 ${MAX_EXCHANGES} 句的限额。正式咨询建议发邮件到 ${EMAIL} 详聊。）`);
+  showFreeInput(`剩余 ${MAX_EXCHANGES} 句，说说你的想法...`);
+}
+
+function startDialog() {
+  addMessage('system', '你好，欢迎你点进来。你是想跟我联系吗？');
+  setOptions([
+    { id: 'ready', label: '是的，我想好了' },
+    { id: 'unsure', label: '是的，但我还没想好要干嘛' },
+    { id: 'browse', label: '随便看看' }
+  ], handleFirstChoice);
+}
+
+function handleFirstChoice(choice) {
+  if (choice === 'ready') {
+    askContactThenEmail(null, '来访者选择直接联系');
+  } else if (choice === 'unsure') {
+    setTimeout(() => {
+      addMessage('system', '你是想做咨询、督导、商务，还是其他？');
+      setOptions([
+        { id: 'therapy', label: '咨询' },
+        { id: 'supervision', label: '督导' },
+        { id: 'business', label: '商务' },
+        { id: 'other', label: '其他' }
+      ], handleCategoryChoice);
+    }, 400);
+  } else if (choice === 'browse') {
+    addMessage('system', '欢迎随便看看 👋 上面有我的一些介绍，你也可以关注公众号 <strong>MindMeetsHeart</strong> 了解更多。');
+    currentContext = '来访者选择随便看看';
+    setTimeout(() => enterFreeChat('既然来了，有什么想聊的也可以说说。'), 600);
+  }
+}
+
+function handleCategoryChoice(choice) {
+  if (choice === 'supervision') {
+    askContactThenEmail('督导相关事宜请发邮件沟通，我会尽快回复。', '来访者咨询督导');
+  } else if (choice === 'business') {
+    askContactThenEmail('商务合作请发邮件，我们具体沟通。', '来访者咨询商务合作');
+  } else if (choice === 'other') {
+    currentContext = '来访者选择"其他"类别进行自由交流';
+    addMessage('system', '好的，那我们来聊聊。有什么你想说的吗？');
+    addMessage('system', `（本次对话有 ${MAX_EXCHANGES} 句限额。正式咨询建议发邮件到 ${EMAIL} 详聊。）`);
+    isFreeMode = true; showFreeInput();
+  } else if (choice === 'therapy') {
+    setTimeout(() => {
+      addMessage('system', '是成年、未成年，还是夫妻咨询？');
+      setOptions([
+        { id: 'adult', label: '成年' },
+        { id: 'minor', label: '未成年' },
+        { id: 'couple', label: '夫妻' }
+      ], handleAgeChoice);
+    }, 400);
+  }
+}
+
+function handleAgeChoice(choice) {
+  if (choice === 'minor') {
+    askContactThenEmail('未成年咨询需要监护人知情同意，具体情况请发邮件沟通。', '来访者咨询未成年咨询');
+  } else if (choice === 'couple') {
+    askContactThenEmail('夫妻咨询请发邮件预约，我们具体沟通时间和安排。', '来访者咨询夫妻咨询');
+  } else if (choice === 'adult') {
+    setTimeout(() => {
+      addMessage('system', '是个人体验，还是其他方面的问题？');
+      setOptions([
+        { id: 'personal', label: '个人体验' },
+        { id: 'other_issue', label: '其他问题' }
+      ], handlePersonalChoice);
+    }, 400);
+  }
+}
+
+function handlePersonalChoice(choice) {
+  if (choice === 'personal') {
+    currentContext = '来访者咨询成年个人体验。';
+    addMessage('system', '好的。个体咨询收费为 <strong>600 元 / 50 分钟</strong>。');
+    addMessage('system', `如果你还有想了解的，可以继续问我（有 ${MAX_EXCHANGES} 句限额）。当然，最好的方式是直接发邮件到 <strong>${EMAIL}</strong>，我们可以详细沟通具体安排。`);
+    isFreeMode = true; showFreeInput(`剩余 ${MAX_EXCHANGES} 句，继续输入...`);
+  } else if (choice === 'other_issue') {
+    addMessage('system', '好的，能简单说说你遇到的是什么问题吗？');
+    currentContext = '来访者咨询成年非个人体验的其他问题';
+    addMessage('system', `（你有 ${MAX_EXCHANGES} 句的对话额度）`);
+    isFreeMode = true; showFreeInput('请描述你的问题...');
+  }
+}
+
+startDialog();
+</script>
+</body>
+</html>
