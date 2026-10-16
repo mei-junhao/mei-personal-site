@@ -577,9 +577,8 @@
 <script>
 const EMAIL = '985729106@qq.com';
 // ⚠️ 公开仓库：替换为你的实际值（从本地 index.html 复制）
-const DEEPSEEK_KEY = '';
-const DEEPSEEK_URL = 'https://xinjingchat.online/';
-const DEEPSEEK_MODEL = 'deepseek-v4-flash';
+// 访客问答走服务端代理端点；模型与凭据全部在服务器端，前端零凭据
+const DEEPSEEK_URL = 'https://xinjingchat.online/mei-assistant';
 const MAX_EXCHANGES = 50;
 
 // EmailJS config — 替换为你的实际值
@@ -772,15 +771,17 @@ function endConversation(summary) {
 async function callDeepSeek(messages) {
   showTyping();
   try {
+    // 服务端代理端点：凭据只存在服务器，浏览器永远拿不到 key
     const res = await fetch(DEEPSEEK_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${DEEPSEEK_KEY}` },
-      body: JSON.stringify({ model: DEEPSEEK_MODEL, messages, max_tokens: 500, temperature: 0.7, thinking: { type: 'disabled' }, stream: false })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages })
     });
     hideTyping();
-    if (!res.ok) return { error: `API 响应异常 (${res.status})` };
+    if (!res.ok) return { error: `服务暂时不可用 (${res.status})，请稍后重试` };
     const data = await res.json();
-    return { text: data.choices?.[0]?.message?.content || '' };
+    if (!data || data.ok !== true) return { error: '服务暂时不可用，请稍后重试' };
+    return { text: data.content || '' };
   } catch (e) {
     hideTyping();
     return { error: '网络连接失败，请稍后重试' };
